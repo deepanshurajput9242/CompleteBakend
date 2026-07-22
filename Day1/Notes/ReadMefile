@@ -1,1 +1,253 @@
-bhai yaar 
+What is a Server?
+A Server is a computer (or machine) that provides services, data, or resources to other computers (clients).
+A server mainly consists of:
+Operating System (OS)
+RAM
+Processor (CPU)
+Storage
+Network Connection
+Whenever a client sends a request, the server processes it and returns a response.
+Client  --->  Server  --->  Response
+Real-Life Example
+Imagine you search for Headphones on Amazon.
+What happens?
+You search for "Headphones".
+Your request goes to Amazon's server.
+The server searches its database.
+It finds all related headphones.
+The server sends the result back to you.
+User
+   |
+Search "Headphones"
+   |
+Internet
+   |
+Amazon Server
+   |
+Database Search
+   |
+Response
+   |
+List of Headphones
+Why Node.js?
+JavaScript was originally designed to run inside browsers.
+With Node.js, JavaScript can also run on the server.
+This allows developers to build:
+Backend
+APIs
+Servers
+Real-time Applications
+using JavaScript.
+What are Packages?
+Instead of writing everything from scratch, developers use ready-made code written by others.
+These reusable pieces of code are called Packages.
+Examples:
+Express
+Axios
+CORS
+Nodemon
+Mongoose
+Packages save:
+Time
+Effort
+Development cost
+node_modules Folder
+Whenever we install packages using npm,
+npm install
+Node.js downloads all the package files into the
+node_modules/
+folder.
+This folder contains:
+Installed package
+Its internal files
+Its dependencies
+Normally, developers never edit this folder manually.
+Dependencies
+Sometimes one package needs another package to work.
+This relationship is called a Dependency.
+Example:
+Your Project
+     |
+     |
+ Express
+     |
+     |
+  Body Parser
+     |
+     |
+ Debug
+Every package may depend on multiple other packages.
+When we install one package, npm automatically installs all required dependencies.
+package.json
+The package.json file keeps information about your project.
+It contains:
+Project Name
+Version
+Scripts
+Dependencies
+Author
+License
+Example:
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^5.0.0"
+  }
+}
+It helps npm know which packages are required for the project.
+Functions in JavaScript
+A function is a block of reusable code.
+Syntax:
+function add(a, b) {
+    return a + b;
+}
+Calling the function:
+add(3, 4);
+Output:
+7
+Functions execute only when they are called.
+Creating & Starting a Server
+When creating a server in Node.js:
+Write the server code.
+Start the server.
+It begins running in the background.
+It keeps listening for client requests.
+A server continuously waits for requests until it is stopped.
+Client
+   |
+Request
+   |
+Server (Listening)
+   |
+Response
+NPM (Node Package Manager)
+NPM is the package manager for Node.js.
+It is used to:
+Install packages
+Update packages
+Remove packages
+Manage project dependencies
+Common commands:
+Install package
+npm install express
+Install all dependencies
+npm install
+Remove package
+npm uninstall express
+Summary
+After completing these notes, you should understand:
+✅ What a Server is
+✅ How Client-Server communication works
+✅ Why Node.js is used
+✅ What Packages are
+✅ What Dependencies are
+✅ Purpose of package.json
+✅ Purpose of node_modules
+✅ JavaScript Functions
+✅ How a Server starts and listens for requests
+✅ Basics of NPM 
+# Backend Communication, API & REST API
+
+## Frontend and Backend Communication
+
+The data requested from the frontend is accessed with the help of a **Request (Req)**.
+
+Whenever the frontend sends a request, the backend processes that request and sends a **Response (Res)** back to the frontend. The frontend then uses this response to display the required data.
+
+**Flow:**
+
+Frontend → Request (Req) → Backend → Response (Res) → Frontend
+
+---
+
+# API (Application Programming Interface)
+
+## What is an API?
+
+An **API (Application Programming Interface)** is a set of **rules and protocols** that allows two different applications to communicate with each other.
+
+APIs make communication possible between different software applications by transferring requests and responses.
+
+### Example
+
+The backend server and the browser running the frontend are two different applications. Communication between them happens through an API.
+
+---
+
+# REST API
+
+**REST API** stands for **Representational State Transfer API**.
+
+REST API is one of the most commonly used API architectures for communication between the frontend and backend.
+
+Other API types mentioned are:
+
+- SOAP
+- RPC
+- GraphQL
+- WebSocket API
+
+---
+
+# HTTP Methods
+
+## GET
+
+The **GET** method is used to fetch data from the server.
+
+### Example
+
+When the frontend needs users, products, or any other information from the server, it sends a GET request.
+
+---
+
+## POST
+
+The **POST** method is used to send data from the frontend to the server.
+
+### Example
+
+It is used for submitting forms, sending user data, or creating new records on the server.
+
+---
+
+## PATCH
+
+The **PATCH** method is used to update existing data available on the server.
+
+It updates only the required fields instead of replacing the entire data.
+
+### Example
+
+Updating a user's name, email address, or mobile number.
+
+---
+
+## DELETE
+
+The **DELETE** method is used to remove existing data from the server.
+
+### Example
+
+Deleting a user, product, or any existing record from the database.
+
+---
+
+# Summary
+
+- The frontend sends a **Request** to the backend.
+- The backend processes the request.
+- The backend sends a **Response** back to the frontend.
+- The frontend uses the response to display the required data.
+- API is a set of rules and protocols used for communication between two different applications.
+- REST stands for **Representational State Transfer API**.
+- Other API types include:
+  - SOAP
+  - RPC
+  - GraphQL
+  - WebSocket API
+- **GET** → Fetch data from the server.
+- **POST** → Send or create new data.
+- **PATCH** → Update existing data.
+- **DELETE** → Delete existing data. end
