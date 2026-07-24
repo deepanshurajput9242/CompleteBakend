@@ -1,0 +1,488 @@
+📘 Express.js & REST API Notes
+1. Client-Server Architecture
+Frontend (Client)
+User se input leta hai.
+Server ko request bhejta hai.
+Server se response receive karta hai.
+Examples:
+React
+HTML/CSS/JS
+Angular
+Vue
+Backend (Server)
+Request receive karta hai.
+Data process karta hai.
+Database se data fetch/store karta hai.
+Response frontend ko bhejta hai.
+User
+   ↓
+Frontend
+   ↓ Request
+Backend(Server)
+   ↓
+Database
+   ↑
+Response
+2. API (Application Programming Interface)
+Definition
+
+API ek medium hai jo do applications ko aapas me communicate karne deta hai.
+
+Simple words me:
+
+API = Rules + Protocols jinke through Frontend aur Backend communicate karte hain.
+
+Example
+
+Instagram App
+
+Frontend
+     |
+     | API Request
+     |
+Backend Server
+     |
+Database
+
+Frontend directly database se baat nahi karta.
+
+3. Types of APIs
+REST API ⭐ (Most Popular)
+SOAP API
+RPC API
+GraphQL API
+WebSocket API
+4. REST API
+
+REST = Representational State Transfer
+
+REST API HTTP methods ka use karke server se communicate karti hai.
+
+5. HTTP Methods
+GET
+
+Purpose
+
+Server se data lena.
+
+Example
+
+GET /notes
+
+Use Cases
+
+Fetch notes
+Fetch users
+Fetch products
+
+Status Code
+
+200 OK
+POST
+
+Purpose
+
+Server par naya data create karna.
+
+Example
+
+POST /notes
+
+Body
+
+{
+   "title":"DSA",
+   "description":"Practice daily"
+}
+
+Status Code
+
+201 Created
+PATCH
+
+Purpose
+
+Existing data ka sirf kuch part update karna.
+
+Example
+
+PATCH /notes/2
+
+Body
+
+{
+   "description":"Updated Description"
+}
+
+Status
+
+200 OK
+PUT
+
+Purpose
+
+Pure object ko replace/update karta hai.
+
+Example
+
+PUT /notes/2
+
+Body
+
+{
+   "title":"Java",
+   "description":"Java Notes"
+}
+
+Difference
+
+PATCH
+
+→ Sirf required field update
+
+PUT
+
+→ Pura object replace
+
+DELETE
+
+Purpose
+
+Data delete karna.
+
+Example
+
+DELETE /notes/2
+
+Status
+
+200 OK
+6. Express
+
+Install
+
+npm init -y
+npm install express
+
+Import
+
+const express = require("express");
+
+Create App
+
+const app = express();
+
+Start Server
+
+app.listen(3000, () => {
+    console.log("Server Running");
+});
+7. Middleware
+
+Middleware request aur response ke beech execute hota hai.
+
+Request
+
+↓
+
+Middleware
+
+↓
+
+Route
+
+↓
+
+Response
+
+JSON Middleware
+
+app.use(express.json());
+
+Purpose
+
+JSON data ko
+
+req.body
+
+me convert karta hai.
+
+Agar middleware nahi lagaya to
+
+req.body
+
+undefined aayega.
+
+8. Request Object
+req.body
+
+User ka bheja hua data.
+
+Example
+
+{
+"title":"Java"
+}
+
+Access
+
+req.body.title
+req.params
+
+Dynamic URL values.
+
+Route
+
+app.delete("/notes/:index")
+
+URL
+
+localhost:3000/notes/2
+
+Access
+
+req.params.index
+
+Output
+
+2
+req.query
+
+Example
+
+localhost:3000/users?page=2
+
+Access
+
+req.query.page
+
+Output
+
+2
+9. Response Object
+
+Text
+
+res.send("Hello")
+
+JSON
+
+res.json({
+success:true
+})
+
+Status
+
+res.status(200)
+
+Combine
+
+res.status(200).json({
+success:true
+})
+10. Status Codes
+200 → OK
+
+201 → Created
+
+400 → Bad Request
+
+401 → Unauthorized
+
+403 → Forbidden
+
+404 → Not Found
+
+500 → Internal Server Error
+11. CRUD Operations
+
+CRUD means
+
+Create
+
+Read
+
+Update
+
+Delete
+Operation	HTTP Method
+Create	POST
+Read	GET
+Update	PATCH / PUT
+Delete	DELETE
+12. Notes API
+POST
+app.post("/notes",(req,res)=>{
+
+notes.push(req.body);
+
+res.status(201).json({
+
+success:true,
+
+message:"Note Added"
+
+});
+
+});
+GET
+app.get("/notes",(req,res)=>{
+
+res.status(200).json({
+
+data:notes
+
+});
+
+});
+DELETE
+app.delete("/notes/:index",(req,res)=>{
+
+const index=req.params.index;
+
+delete notes[index];
+
+res.status(200).json({
+
+message:"Deleted"
+
+});
+
+});
+PATCH
+app.patch("/notes/:index",(req,res)=>{
+
+const index=req.params.index;
+
+notes[index].description=req.body.description;
+
+res.status(200).json({
+
+message:"Updated"
+
+});
+
+});
+13. Folder Structure
+Project
+
+│ package.json
+
+│ server.js
+
+│
+
+└── Code
+
+      └── src
+
+            └── app.js
+14. Flow of Request
+Frontend
+
+↓
+
+POST /notes
+
+↓
+
+Express Server
+
+↓
+
+Middleware
+
+↓
+
+Route Handler
+
+↓
+
+Database / Array
+
+↓
+
+Response
+
+↓
+
+Frontend
+15. Common Errors
+❌ Cannot GET /notes
+
+Reason:
+Route exist nahi karta.
+
+❌ Cannot PATCH /notes/2
+
+Reason:
+PATCH route missing ya URL galat.
+
+❌ req.body undefined
+
+Reason:
+Middleware missing.
+
+app.use(express.json());
+❌ ReferenceError: exress is not defined
+
+Reason:
+Spelling mistake.
+
+Correct
+
+express.json()
+❌ Cannot find module
+
+Reason
+
+File path galat
+File exist nahi karti
+require() path incorrect hai
+16. Interview Questions
+What is Express.js?
+What is REST API?
+Difference between PUT and PATCH?
+Difference between GET and POST?
+What is Middleware?
+What is req.body?
+What is req.params?
+What is req.query?
+Difference between res.send() and res.json()?
+Why do we use express.json()?
+⭐ Revision Trick (1 Minute)
+Client
+↓
+
+Request
+
+↓
+
+Express
+
+↓
+
+Middleware
+
+↓
+
+Route
+
+↓
+
+Database
+
+↓
+
+Response
+
+↓
+
+Client
+
+Aur yaad rakhne ke liye CRUD:
+
+POST → Create
+GET → Read
+PATCH/PUT → Update
+DELETE → Delete
