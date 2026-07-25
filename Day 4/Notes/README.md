@@ -498,3 +498,387 @@ MongoDB
 ↓
 
 Response
+1️⃣ Express Application
+const express = require('express');
+const app = express();
+Explanation
+express → Express package ko import karta hai.
+app → Express Application Object hai.
+Isi object ke through routes aur middleware likhte hain.
+
+Flow
+
+Express
+
+↓
+
+app
+
+↓
+
+Routes
+
+↓
+
+Response
+2️⃣ Middleware
+app.use(express.json());
+Definition
+
+Middleware ek function hota hai jo
+
+Request aur Response ke beech execute hota hai.
+
+express.json()
+
+Client se JSON data receive karta hai aur usse
+
+req.body
+
+me convert kar deta hai.
+
+Example
+
+Client
+
+{
+"title":"Java",
+"description":"Notes"
+}
+
+Server
+
+req.body
+
+Output
+
+{
+title:"Java",
+description:"Notes"
+}
+3️⃣ CRUD Operations
+
+CRUD ka matlab
+
+Letter	Meaning
+C	Create
+R	Read
+U	Update
+D	Delete
+4️⃣ POST API
+
+Purpose
+
+Database me naya note insert karna.
+
+app.post('/notes',async(req,res)=>{
+
+})
+
+Insert
+
+await noteModel.create({
+
+title:data.title,
+
+description:data.description
+
+})
+create()
+
+Database me document insert karta hai.
+
+Return Type
+
+Inserted Object
+5️⃣ GET API
+
+Purpose
+
+Database ke saare notes fetch karna.
+
+const notes = await noteModel.find();
+find()
+
+Collection ke saare documents fetch karta hai.
+
+Return Type
+
+[
+ {},
+ {},
+ {}
+]
+
+Always
+
+Array
+6️⃣ findOne()
+
+Purpose
+
+Sirf ek matching document fetch karna.
+
+const note = await noteModel.findOne({
+
+title:"Java"
+
+})
+
+Return
+
+{
+title:"Java",
+
+description:"Backend"
+}
+
+Agar document exist nahi kare
+
+null
+
+Return Type
+
+Object OR null
+find() vs findOne()
+find()	findOne()
+Multiple Documents	Single Document
+Array Return	Object Return
+[]	{} / null
+7️⃣ Status Codes
+Status Code	Meaning
+200	Success
+201	Created Successfully
+400	Bad Request
+404	Not Found
+500	Internal Server Error
+
+Example
+
+res.status(201)
+
+Meaning
+
+Successfully Created
+8️⃣ JSON Response
+res.status(200).json({
+
+success:true,
+
+message:"Done"
+
+})
+
+Response hamesha JSON me bhejna best practice hai.
+
+9️⃣ req.body
+
+Client jo data bhejta hai
+
+↓
+
+req.body
+
+↓
+
+Database
+
+Example
+
+Client
+
+{
+
+"title":"React",
+
+"description":"Hooks"
+
+}
+
+Server
+
+req.body.title
+
+req.body.description
+🔟 Model
+const noteModel = require("./modules/note.model");
+
+Model ka kaam
+
+Database ke Collection par CRUD operations perform karna.
+
+Without Model
+
+No CRUD
+1️⃣1️⃣ Schema
+
+Schema
+
+Database ka Blueprint hota hai.
+
+const noteSchema = new mongoose.Schema({
+
+title:String,
+
+description:String
+
+})
+
+Matlab
+
+Har Document me
+
+title
+
+description
+
+ye dono fields hongi.
+
+1️⃣2️⃣ app.listen()
+app.listen(3000)
+
+Meaning
+
+Server
+
+localhost:3000
+
+par run karega.
+
+1️⃣3️⃣ module.exports
+
+Export
+
+module.exports = app;
+
+Import
+
+const app = require("./app");
+
+Purpose
+
+Ek file ka code dusri file me use karna.
+
+1️⃣4️⃣ await
+await noteModel.find();
+
+Meaning
+
+Pehle Database ka response aane do
+
+Fir next line execute karo.
+
+1️⃣5️⃣ Async
+async(req,res)=>{
+
+}
+
+Database operations asynchronous hote hain.
+
+Isliye
+
+async
+
++
+
+await
+
+use karte hain.
+
+1️⃣6️⃣ Complete Request Flow
+Client
+
+↓
+
+Express Server
+
+↓
+
+Middleware
+
+↓
+
+Route
+
+↓
+
+Model
+
+↓
+
+MongoDB
+
+↓
+
+Response
+1️⃣7️⃣ Database Flow
+Client
+
+↓
+
+POST Request
+
+↓
+
+req.body
+
+↓
+
+create()
+
+↓
+
+MongoDB
+
+↓
+
+Response
+1️⃣8️⃣ Read Flow
+Client
+
+↓
+
+GET Request
+
+↓
+
+find()
+
+↓
+
+MongoDB
+
+↓
+
+Array
+
+↓
+
+Response
+1️⃣9️⃣ findOne() Flow
+Client
+
+↓
+
+findOne()
+
+↓
+
+Condition Match
+
+↓
+
+Object
+
+OR
+
+null
+2️⃣0️⃣ Important Functions
+Function	Work
+express()	Create Express App
+express.json()	JSON Middleware
+app.use()	Register Middleware
+app.post()	Create Route
+app.get()	Read Route
+create()	Insert Data
+find()	Fetch All Documents
